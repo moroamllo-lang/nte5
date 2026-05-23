@@ -70,8 +70,13 @@ html, body {
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.4;
+    opacity: 0.45;
     mix-blend-mode: screen;
+    /* Native GPU-accelerated CSS Grid Pattern (reduces CPU/JS drawing overhead to zero) */
+    background-image: 
+        linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+    background-size: 65px 65px;
 }
 
 .bg-wrapper {
@@ -93,6 +98,13 @@ html, body {
     filter: brightness(0.65) contrast(1.1) saturate(1.05);
     transform: scale(1.02);
     animation: bgEntrance 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards, bgCinematicZoom 45s ease-in-out infinite alternate;
+}
+
+/* Disable intensive zoom scaling animations on mobile/tablets to prevent rendering lag */
+@media (max-width: 1024px), (pointer: coarse) {
+    .bg-image, .bg-video {
+        animation: bgEntrance 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
 }
 
 /* --- High-Tech Screen Effects --- */
