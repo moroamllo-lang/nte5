@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Official landing page for Neverness to Everness (NTE) - the ultimate supernatural urban open-world RPG with sports cars and Esper combat. Pre-register now!">
+    <meta name="keywords" content="Neverness to Everness, NTE, RPG, Anime, Open World, Esper Combat, Perfect World, Hotta Studio, Pre-registration">
+    <meta name="author" content="Perfect World Games">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Neverness to Everness (NTE) - Pre-Register Now">
+    <meta property="og:description" content="Dive into Hethereau, the supernatural urban metropolis. Custom sports cars, Esper abilities, and anomalies await.">
+    <meta property="og:image" content="image1.jpeg">
+    <meta property="og:type" content="website">
+    
+    <title>Neverness to Everness (NTE) | Official PC Lander</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Viewport Container (Locked, Non-Scrollable) -->
+    <div class="lander-container" id="main-container">
+        
+        <!-- Live Particle Canvas Background -->
+        <canvas id="grid-canvas"></canvas>
+        
+        <!-- CRT Dynamic Scanline Overlay & Dark Vignette -->
+        <div class="scanlines"></div>
+        <div class="vignette"></div>
+        <div class="glow-overlay"></div>
+
+        <!-- Ambient Background Video -->
+        <div class="bg-wrapper">
+            <video autoplay loop muted playsinline class="bg-video" id="bg-video" poster="image1.jpeg">
+                <source src="https://pub-8da3ca0d46a542b19b50743a2513901f.r2.dev/perfcore.com/NTE_00705V_CBQ_CBQ_EN_V_f_i_a_169_20260417.mp4" type="video/mp4">
+                <img src="image1.jpeg" alt="Neverness to Everness Background Landscape" class="bg-image" id="bg-img">
+            </video>
+        </div>
+
+        <!-- Top Header Navigation & Logo -->
+        <header class="main-header">
+            <!-- Left Side Logo -->
+            <div class="logo-container">
+                <a href="#" class="logo-link" id="logo-link-btn" aria-label="Neverness to Everness Home">
+                    <img src="logo.png" alt="Neverness to Everness Logo" class="logo-img" id="logo-img">
+                </a>
+            </div>
+            
+            <!-- Right Side Utility Controls & Audio Toggle -->
+            <div class="utility-controls">
+                <button class="audio-toggle-btn" id="audio-toggle" aria-label="Toggle Sound Effects">
+                    <span class="audio-icon pulse-icon">🔊</span>
+                    <span class="audio-text">SFX ON</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Centered Floating Primary Nav Bar (Moved a bit lower, toward center) -->
+        <div class="floating-nav-wrapper" id="floating-nav-wrapper">
+            <div class="nav-container-glass">
+                <img src="nav_transparent.png" alt="Neverness to Everness Main Navigation Bar" class="nav-img" id="nav-img">
+                <!-- Interactive Transparent Click Areas for Navigation Menu -->
+                <div class="nav-hotspots">
+                    <a href="#home" class="nav-hotspot" id="hotspot-home" aria-label="Navigate Home"></a>
+                    <a href="#about" class="nav-hotspot" id="hotspot-about" aria-label="Navigate About"></a>
+                    <a href="#characters" class="nav-hotspot" id="hotspot-characters" aria-label="Navigate Characters"></a>
+                    <a href="#vehicles" class="nav-hotspot" id="hotspot-vehicles" aria-label="Navigate Vehicles"></a>
+                    <a href="#news" class="nav-hotspot" id="hotspot-news" aria-label="Navigate News"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cyber HUD Elements for Premium Gamer Feel -->
+        <div class="hud-left" id="hud-system-info">
+            <div class="hud-block">
+                <div class="hud-label">ANOMALY DETECTOR</div>
+                <div class="hud-value status-warning">CRITICAL ACTIVITY</div>
+            </div>
+            <div class="hud-block">
+                <div class="hud-label">SYSTEM LATENCY</div>
+                <div class="hud-value" id="hud-ping">24 MS</div>
+            </div>
+            <div class="hud-block">
+                <div class="hud-label">METROPOLIS SECTOR</div>
+                <div class="hud-value">HETHEREAU - 09</div>
+            </div>
+        </div>
+
+        <div class="hud-right" id="hud-clock-info">
+            <div class="hud-block text-right">
+                <div class="hud-label">LOCAL REAL-TIME</div>
+                <div class="hud-value font-orbitron" id="hud-clock">00:00:00</div>
+            </div>
+            <div class="hud-block text-right">
+                <div class="hud-label">PRE-REGISTRATION TOTAL</div>
+                <div class="hud-value text-glow-pink font-orbitron" id="registration-count">8,531,942</div>
+            </div>
+        </div>
+
+        <!-- Main Body Display Box (Supernatural Theme Content) -->
+        <main class="lander-main-content">
+            <!-- Cinematic Trailer Ads Popup / Card -->
+            <div class="cinematic-popup-wrapper" id="trailer-popup-wrapper">
+                <!-- Headline Above Popup -->
+                <h2 class="popup-headline font-orbitron">What If GTA Was Anime… <span class="text-glow-pink">and Free to Play on PC?</span></h2>
+                
+                <div class="popup-container-hud">
+                    <!-- Corner Brackets -->
+                    <span class="popup-bracket-tl"></span>
+                    <span class="popup-bracket-tr"></span>
+                    <span class="popup-bracket-bl"></span>
+                    <span class="popup-bracket-br"></span>
+                    
+                    <!-- Close button -->
+                    <button class="popup-close-btn" id="popup-close" aria-label="Close Popup">✕</button>
+                    
+                    <!-- Clickable Video Container -->
+                    <div class="popup-video-container" id="popup-video-link">
+                        <video autoplay loop muted playsinline class="popup-video" id="popup-vid" poster="image1.jpeg">
+                            <source src="https://pub-8da3ca0d46a542b19b50743a2513901f.r2.dev/perfcore.com/NTE_00705V_CBQ_CBQ_EN_V_f_i_a_169_20260417.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay-click"></div>
+                    </div>
+                    
+                    <!-- Popup Controls & Details Bar -->
+                    <div class="popup-controls-bar">
+                        <!-- Sound Toggle -->
+                        <button class="popup-sound-btn" id="popup-sound-toggle">
+                            <span class="sound-icon">🔇</span> <span class="sound-text">Enable Sound</span>
+                        </button>
+                        
+                        <!-- CTA Play Free On PC Button -->
+                        <div class="popup-cta-wrapper">
+                            <a href="https://to.dordir.com/5A0I/2J2B7/" target="_blank" class="popup-cta-btn ctr-btn-custom popup-pink-glow" id="popup-cta">
+                                <span class="ctr-text-main font-orbitron" data-text="PLAY FREE ON PC">PLAY FREE ON PC</span>
+                                <span class="ctr-sub-text">Windows Only</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Lower Section (Footer Container with Black CTR Button & Socials) -->
+        <footer class="main-footer">
+            <div class="footer-bg-black"></div>
+            
+            <div class="footer-grid">
+                <!-- Platform icons / ratings -->
+                <div class="footer-left">
+                    <div class="platform-list">
+                        <span class="platform-tag">PC</span>
+                        <span class="platform-tag">STEAM</span>
+                        <span class="platform-tag">EPIC GAMES</span>
+                        <span class="platform-tag">PS5</span>
+                        <span class="platform-tag">APP STORE</span>
+                        <span class="platform-tag">GOOGLE PLAY</span>
+                    </div>
+                    <div class="game-rating">
+                        <span class="rating-badge">16+</span>
+                        <span class="rating-desc">Strong Violence, Supernatural Themes, Online Interactivity</span>
+                    </div>
+                </div>
+
+                <!-- Centered Lower Glowing CTR Button (Moved from middle) -->
+                <div class="footer-ctr-center">
+                    <div class="ctr-bottom-wrapper">
+                        <a href="https://to.dordir.com/5A0I/2J2B7/" target="_blank" class="ctr-btn-custom ctr-glow-custom" id="ctr-bottom" aria-label="Bottom Glowing Play On PC Button">
+                            <span class="ctr-bracket-tl"></span>
+                            <span class="ctr-bracket-tr"></span>
+                            <span class="ctr-bracket-bl"></span>
+                            <span class="ctr-bracket-br"></span>
+                            <div class="ctr-glitch-overlay-custom"></div>
+                            <span class="ctr-text-main font-orbitron" data-text="PLAY ON PC">PLAY ON PC</span>
+                            <span class="ctr-sub-text">WINDOWS ONLY</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right-side Social Icons & Copyright -->
+                <div class="footer-right">
+                    <div class="copyright-info">
+                        © Hotta Studio. All Rights Reserved. published by Perfect World Games.
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Custom JavaScript Link -->
+    <script src="script.js"></script>
+</body>
+</html>

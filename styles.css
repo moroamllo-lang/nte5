@@ -1,0 +1,1217 @@
+/* ==========================================================================
+   NEVERNESS TO EVERNESS (NTE) - OFFICIAL PC LANDING PAGE DESIGN SYSTEM
+   ========================================================================== */
+
+/* --- Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;600&display=swap');
+
+/* --- Root Variables (Color Palette & Tokens) --- */
+:root {
+    --brand-pink: #FB5692;
+    --brand-pink-glow: rgba(251, 86, 146, 0.6);
+    --brand-pink-dark: #cc3d71;
+    
+    --brand-cyan: #00F0FF;
+    --brand-cyan-glow: rgba(0, 240, 255, 0.5);
+    --brand-cyan-dark: #00bcd4;
+    
+    --brand-yellow: #FFD200;
+    
+    --bg-dark-base: #0a0a0c;
+    --bg-dark-glass: rgba(10, 10, 12, 0.75);
+    --bg-metallic-black: #121212;
+    
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --border-glow-pink: rgba(251, 86, 146, 0.35);
+    
+    --font-outfit: 'Outfit', 'Inter', sans-serif;
+    --font-orbitron: 'Orbitron', 'Outfit', sans-serif;
+    
+    --transition-snappy: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- Base & Reset --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Strict lock - non-scrollable */
+    background-color: var(--bg-dark-base);
+    font-family: var(--font-outfit);
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Non-Scrollable Lander Container --- */
+.lander-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden; /* Secure fallback */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+/* --- Dynamic Background Canvas & Media --- */
+#grid-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: screen;
+}
+
+.bg-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.bg-image, .bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.65) contrast(1.1) saturate(1.05);
+    transform: scale(1.02);
+    animation: bgEntrance 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards, bgCinematicZoom 45s ease-in-out infinite alternate;
+}
+
+/* --- High-Tech Screen Effects --- */
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: -2;
+    pointer-events: none;
+    opacity: 0.45;
+}
+
+.vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 95%);
+    z-index: -2;
+    pointer-events: none;
+}
+
+.glow-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 85% 15%, rgba(251, 86, 146, 0.08) 0%, rgba(0,0,0,0) 50%),
+                radial-gradient(circle at 15% 85%, rgba(0, 240, 255, 0.05) 0%, rgba(0,0,0,0) 45%);
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* --- Top Header & Logo Styling --- */
+.main-header {
+    width: 100%;
+    height: 100px;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: inline-block;
+    transition: var(--transition-smooth);
+}
+
+.logo-img {
+    height: 130px; /* Custom larger size as requested: "make the icon a bit bigger" */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
+    transition: var(--transition-smooth);
+    margin-top: 15px;
+}
+
+.logo-link:hover .logo-img {
+    transform: scale(1.08) rotate(-1deg);
+    filter: drop-shadow(0 0 25px var(--brand-cyan-glow)) drop-shadow(0 0 4px var(--brand-cyan));
+}
+
+/* --- Audio Toggle UI --- */
+.audio-toggle-btn {
+    background: rgba(18, 18, 18, 0.6);
+    border: 1px solid var(--brand-pink-dark);
+    color: #fff;
+    padding: 10px 18px;
+    font-family: var(--font-orbitron);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(8px);
+    transition: var(--transition-snappy);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(251, 86, 146, 0.2);
+}
+
+.audio-toggle-btn:hover {
+    background: rgba(251, 86, 146, 0.15);
+    border-color: var(--brand-pink);
+    box-shadow: 0 0 15px var(--brand-pink-glow), inset 0 0 10px rgba(251, 86, 146, 0.4);
+    transform: translateY(-2px);
+}
+
+.audio-toggle-btn:active {
+    transform: translateY(1px);
+}
+
+.audio-icon {
+    font-size: 1rem;
+}
+
+.pulse-icon {
+    animation: iconPulse 1.5s infinite alternate;
+}
+
+/* --- Centered Navigation Bar (Restored to Top Header Position) --- */
+.floating-nav-wrapper {
+    position: absolute;
+    top: 20px; /* Aligned vertically in top header, centered horizontally */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12;
+    width: auto;
+    max-width: 90%;
+    pointer-events: auto;
+    animation: navEntrance 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.nav-container-glass {
+    position: relative;
+    background: rgba(12, 12, 14, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 5px 25px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                0 0 20px rgba(0, 240, 255, 0.04);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.nav-container-glass::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 8px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(251, 86, 146, 0.25), rgba(0, 240, 255, 0.05) 50%, rgba(251, 86, 146, 0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.nav-container-glass:hover {
+    border-color: rgba(251, 86, 146, 0.25);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.75), 
+                0 0 35px rgba(251, 86, 146, 0.08);
+    transform: translateY(-2px);
+}
+
+.nav-img {
+    height: 62px; /* Smooth scale down to keep it highly integrated and clean */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.15));
+}
+
+/* Nav hotspots overlay for authentic navigation clicking */
+.nav-hotspots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.nav-hotspot {
+    flex: 1;
+    height: 100%;
+    cursor: pointer;
+    background: transparent;
+    transition: var(--transition-snappy);
+    border-radius: 4px;
+}
+
+.nav-hotspot:hover {
+    background: rgba(251, 86, 146, 0.06);
+    box-shadow: inset 0 0 10px rgba(251, 86, 146, 0.1);
+}
+
+/* --- Cyber HUD Panels --- */
+.hud-left {
+    position: absolute;
+    left: 50px;
+    top: 32%;
+    z-index: 5;
+    pointer-events: none;
+    font-family: var(--font-orbitron);
+    animation: hudEntrance 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hud-right {
+    position: absolute;
+    right: 50px;
+    top: 32%;
+    z-index: 5;
+    pointer-events: none;
+    font-family: var(--font-orbitron);
+    animation: hudEntrance 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hud-block {
+    margin-bottom: 22px;
+    background: rgba(10, 10, 12, 0.4);
+    border-left: 3px solid var(--brand-pink);
+    padding: 6px 15px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.hud-right .hud-block {
+    border-left: none;
+    border-right: 3px solid var(--brand-cyan);
+}
+
+.text-right {
+    text-align: right;
+}
+
+.hud-label {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.2em;
+    margin-bottom: 3px;
+}
+
+.hud-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px rgba(255,255,255,0.15);
+}
+
+.font-orbitron {
+    font-family: var(--font-orbitron);
+}
+
+.text-glow-pink {
+    color: var(--brand-pink);
+    text-shadow: 0 0 8px var(--brand-pink-glow), 0 0 2px var(--brand-pink);
+}
+
+.status-warning {
+    color: var(--brand-yellow);
+    text-shadow: 0 0 8px rgba(255, 210, 0, 0.4);
+    animation: textFlicker 2.5s infinite;
+}
+
+/* --- Top-Right Glowing CTR (CTA) Button --- */
+.ctr-top-right-wrapper {
+    position: absolute;
+    top: 35px;
+    right: 180px; /* Centered beautifully with the header elements */
+    z-index: 15;
+    pointer-events: auto;
+    animation: topCtaEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- Custom Gamer-Style CTR Button Base --- */
+.ctr-btn-custom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 10px 30px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+
+/* Corner Brackets for HUD/Gamer styling */
+.ctr-bracket-tl, .ctr-bracket-tr, .ctr-bracket-bl, .ctr-bracket-br {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.ctr-bracket-tl {
+    top: 0;
+    left: 0;
+    border-top: 2px solid var(--brand-cyan);
+    border-left: 2px solid var(--brand-cyan);
+}
+
+.ctr-bracket-tr {
+    top: 0;
+    right: 0;
+    border-top: 2px solid var(--brand-cyan);
+    border-right: 2px solid var(--brand-cyan);
+}
+
+.ctr-bracket-bl {
+    bottom: 0;
+    left: 0;
+    border-bottom: 2px solid var(--brand-cyan);
+    border-left: 2px solid var(--brand-cyan);
+}
+
+.ctr-bracket-br {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid var(--brand-cyan);
+    border-right: 2px solid var(--brand-cyan);
+}
+
+/* Interactive corner brackets expansion */
+.ctr-btn-custom:hover .ctr-bracket-tl { transform: translate(-3px, -3px); }
+.ctr-btn-custom:hover .ctr-bracket-tr { transform: translate(3px, -3px); }
+.ctr-btn-custom:hover .ctr-bracket-bl { transform: translate(-3px, 3px); }
+.ctr-btn-custom:hover .ctr-bracket-br { transform: translate(3px, 3px); }
+
+/* Top-Right Glowing Custom Button */
+.ctr-glow-custom {
+    background: linear-gradient(135deg, var(--brand-pink) 0%, var(--brand-pink-dark) 100%);
+    border: 1px solid rgba(251, 86, 146, 0.5);
+    border-radius: 4px;
+    box-shadow: 0 0 15px var(--brand-pink-glow), 
+                inset 0 0 8px rgba(255, 255, 255, 0.25);
+    animation: buttonFloat 3.5s ease-in-out infinite alternate, neonPinkPulse 1.8s ease-in-out infinite alternate;
+}
+
+/* High-voltage laser sweep across the pink button */
+.ctr-glow-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.45) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-20deg);
+    z-index: 2;
+    pointer-events: none;
+    animation: laserSweep 4.5s infinite ease-in-out;
+}
+
+.ctr-glow-custom:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: var(--brand-pink);
+}
+
+.ctr-glow-custom:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Custom Text Hierarchy */
+.ctr-btn-custom .ctr-text-main {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.15em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    z-index: 3;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.ctr-btn-custom .ctr-sub-text {
+    font-size: 0.55rem;
+    font-family: var(--font-orbitron);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.2em;
+    margin-top: 4px;
+    z-index: 3;
+    text-transform: uppercase;
+}
+
+/* Snappy gamer text hover split-glitch animation */
+.ctr-btn-custom:hover .ctr-text-main {
+    animation: textGlitchEffect 0.3s infinite linear;
+}
+
+/* Pulsating light animations */
+@keyframes neonPinkPulse {
+    0% {
+        box-shadow: 0 0 12px var(--brand-pink-glow),
+                    0 0 4px var(--brand-pink),
+                    inset 0 0 6px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 24px var(--brand-pink),
+                    0 0 8px var(--brand-pink-glow),
+                    inset 0 0 10px rgba(255, 255, 255, 0.35);
+    }
+}
+
+@keyframes textGlitchEffect {
+    0% {
+        text-shadow: -2px -2px 0 var(--brand-cyan), 2px 2px 0 var(--brand-pink);
+        transform: translate(0px, 0px);
+    }
+    20% {
+        text-shadow: 2px -2px 0 var(--brand-cyan), -2px 2px 0 var(--brand-pink);
+        transform: translate(-1px, 1px);
+    }
+    40% {
+        text-shadow: -2px 2px 0 var(--brand-cyan), 2px -2px 0 var(--brand-pink);
+        transform: translate(1px, -1px);
+    }
+    60% {
+        text-shadow: 2px 2px 0 var(--brand-cyan), -2px -2px 0 var(--brand-pink);
+        transform: translate(-1px, -1px);
+    }
+    80% {
+        text-shadow: -1px -2px 0 var(--brand-cyan), 2px 1px 0 var(--brand-pink);
+        transform: translate(1px, 1px);
+    }
+    100% {
+        text-shadow: 2px -1px 0 var(--brand-cyan), -1px 2px 0 var(--brand-pink);
+        transform: translate(0px, 0px);
+    }
+}
+
+/* --- Main Display Hero Section & Content Box --- */
+.lander-main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center popup vertically */
+    align-items: center;
+    padding-bottom: 5vh; /* Optimal centering height */
+    pointer-events: none;
+    position: relative;
+    z-index: 4;
+}
+
+/* --- Cinematic Trailer Popup Layout --- */
+.cinematic-popup-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    pointer-events: auto;
+    width: 100%;
+    max-width: 680px;
+    z-index: 20;
+    animation: sloganEntrance 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Headline Above Popup */
+.popup-headline {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.25), 
+                 0 0 4px rgba(255, 255, 255, 0.5);
+    margin: 0;
+    padding: 0 15px;
+    line-height: 1.3;
+}
+
+.popup-headline span {
+    color: var(--brand-pink);
+    text-shadow: 0 0 12px var(--brand-pink-glow), 0 0 3px var(--brand-pink);
+}
+
+/* Popup Container with glassmorphism & animated border */
+.popup-container-hud {
+    position: relative;
+    width: 90%;
+    max-width: 640px;
+    aspect-ratio: 16 / 9; /* Auto keeps perfectly responsive */
+    background: rgba(8, 8, 10, 0.85);
+    border: 1px solid rgba(251, 86, 146, 0.25);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95),
+                0 0 30px rgba(251, 86, 146, 0.15),
+                inset 0 0 20px rgba(251, 86, 146, 0.05);
+    backdrop-filter: blur(16px);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Pulsating neon border glow */
+.popup-container-hud::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(251, 86, 146, 0.4), rgba(0, 240, 255, 0.15) 50%, rgba(251, 86, 146, 0.3));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: var(--transition-smooth);
+}
+
+.popup-container-hud:hover {
+    border-color: rgba(251, 86, 146, 0.5);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.98),
+                0 0 45px rgba(251, 86, 146, 0.25),
+                inset 0 0 25px rgba(251, 86, 146, 0.08);
+}
+
+/* Corner Brackets */
+.popup-bracket-tl, .popup-bracket-tr, .popup-bracket-bl, .popup-bracket-br {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: var(--brand-cyan);
+    z-index: 10;
+    pointer-events: none;
+    transition: var(--transition-snappy);
+}
+.popup-bracket-tl { top: 6px; left: 6px; border-top: 3px solid; border-left: 3px solid; }
+.popup-bracket-tr { top: 6px; right: 6px; border-top: 3px solid; border-right: 3px solid; }
+.popup-bracket-bl { bottom: 6px; left: 6px; border-bottom: 3px solid; border-left: 3px solid; }
+.popup-bracket-br { bottom: 6px; right: 6px; border-bottom: 3px solid; border-right: 3px solid; }
+
+.popup-container-hud:hover .popup-bracket-tl { transform: translate(-2px, -2px); }
+.popup-container-hud:hover .popup-bracket-tr { transform: translate(2px, -2px); }
+.popup-container-hud:hover .popup-bracket-bl { transform: translate(-2px, 2px); }
+.popup-container-hud:hover .popup-bracket-br { transform: translate(2px, 2px); }
+
+/* Video elements */
+.popup-video-container {
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.popup-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: var(--transition-smooth);
+}
+
+.popup-video-container:hover .popup-video {
+    transform: scale(1.01);
+}
+
+.video-overlay-click {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+    z-index: 2;
+}
+
+/* Close Button (✕) */
+.popup-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(10, 10, 12, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 800;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 12;
+    backdrop-filter: blur(8px);
+    transition: var(--transition-snappy);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.popup-close-btn:hover {
+    background: var(--brand-pink);
+    border-color: var(--brand-pink);
+    color: #fff;
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 0 15px var(--brand-pink-glow);
+}
+
+/* Bottom controls bar */
+.popup-controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: rgba(12, 12, 14, 0.9);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    z-index: 10;
+}
+
+/* Sound unmute button style */
+.popup-sound-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    padding: 8px 16px;
+    font-family: var(--font-orbitron);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-snappy);
+}
+
+.popup-sound-btn:hover {
+    background: rgba(0, 240, 255, 0.12);
+    border-color: var(--brand-cyan);
+    color: var(--brand-cyan);
+    box-shadow: 0 0 12px var(--brand-cyan-glow);
+}
+
+/* Premium Neon Pink Clickable CTA */
+.popup-cta-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.popup-cta-btn {
+    background: linear-gradient(135deg, var(--brand-pink) 0%, var(--brand-pink-dark) 100%);
+    border: 1px solid rgba(251, 86, 146, 0.6);
+    border-radius: 4px;
+    box-shadow: 0 0 12px var(--brand-pink-glow),
+                inset 0 0 8px rgba(255, 255, 255, 0.25);
+    padding: 6px 26px;
+    min-width: 190px;
+    height: 48px;
+    animation: popupCtaPulse 1.8s ease-in-out infinite alternate;
+}
+
+.popup-cta-btn .ctr-text-main {
+    font-size: 0.85rem !important;
+}
+
+.popup-cta-btn:hover {
+    transform: scale(1.05);
+    border-color: var(--brand-pink);
+    box-shadow: 0 0 20px var(--brand-pink),
+                inset 0 0 10px rgba(255, 255, 255, 0.35);
+}
+
+.popup-cta-btn:active {
+    transform: scale(0.97);
+}
+
+@keyframes popupCtaPulse {
+    0% {
+        box-shadow: 0 0 10px var(--brand-pink-glow),
+                    inset 0 0 4px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 22px var(--brand-pink),
+                    inset 0 0 8px rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* Mobile & Small Viewports Styling Overlay overrides */
+@media (max-width: 600px) {
+    .popup-headline {
+        font-size: 1.15rem;
+    }
+    .popup-controls-bar {
+        padding: 8px 12px;
+    }
+    .popup-sound-btn {
+        padding: 6px 10px;
+        font-size: 0.65rem;
+    }
+    .popup-cta-btn {
+        padding: 6px 14px;
+        min-width: 140px;
+        height: 38px;
+    }
+    .popup-cta-btn .ctr-text-main {
+        font-size: 0.7rem !important;
+    }
+    .popup-cta-btn .ctr-sub-text {
+        font-size: 0.45rem !important;
+        margin-top: 1px;
+    }
+    .popup-close-btn {
+        top: 10px;
+        right: 10px;
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+}
+
+/* --- Lower Footer Layout & Black CTR --- */
+.main-footer {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+    animation: footerEntrance 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* "Keep the lower CTR black" - Custom full footer backing block */
+.footer-bg-black {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.75) 100%);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.9);
+    z-index: -1;
+}
+
+.footer-grid {
+    padding: 30px 50px 25px 50px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Left side elements */
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.platform-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.platform-tag {
+    font-family: var(--font-orbitron);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.6);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.08em;
+}
+
+.game-rating {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.rating-badge {
+    font-family: var(--font-orbitron);
+    font-weight: 900;
+    font-size: 0.9rem;
+    color: var(--bg-dark-base);
+    background: var(--brand-yellow);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.rating-desc {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.3;
+}
+
+/* Center Lower Black CTR Button Container */
+.footer-ctr-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ctr-bottom-wrapper {
+    position: relative;
+    padding: 10px;
+}
+
+/* Bottom Black CTR Button (Restored Premium Image Style) */
+.ctr-btn {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border-radius: 8px;
+    outline: none;
+}
+.ctr-black-glow {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #030304; /* True dark backplane for premium look */
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 
+                inset 0 1px 1px rgba(255,255,255,0.05);
+    padding: 6px 14px;
+}
+.ctr-black-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    z-index: 1;
+    pointer-events: none;
+}
+.ctr-img-black {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    position: relative;
+    z-index: 2;
+    transition: var(--transition-smooth);
+    filter: brightness(0.95);
+}
+/* Subtle neon-line scan scanner bar across the black button */
+.ctr-scanner-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--brand-pink), transparent);
+    box-shadow: 0 0 8px var(--brand-pink);
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+/* Interactive flaring for black button */
+.ctr-black-glow:hover {
+    border-color: rgba(251, 86, 146, 0.45);
+    background: #060608;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9), 
+                0 0 25px rgba(251, 86, 146, 0.12),
+                inset 0 0 15px rgba(251, 86, 146, 0.06);
+    transform: translateY(-5px) scale(1.04);
+}
+.ctr-black-glow:hover .ctr-img-black {
+    transform: scale(1.02);
+    filter: brightness(1.05) drop-shadow(0 0 8px var(--brand-pink-glow));
+}
+.ctr-black-glow:hover .ctr-scanner-bar {
+    opacity: 1;
+    animation: blackScan 2.4s infinite linear;
+}
+.ctr-black-glow:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Right side elements */
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    font-family: var(--font-orbitron);
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    padding: 6px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255,255,255,0.01);
+    transition: var(--transition-snappy);
+    border-radius: 4px;
+}
+
+.social-link:hover {
+    color: var(--brand-cyan);
+    border-color: var(--brand-cyan);
+    background: rgba(0, 240, 255, 0.06);
+    box-shadow: 0 0 12px var(--brand-cyan-glow);
+    transform: translateY(-2px);
+}
+
+.copyright-info {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-align: right;
+    letter-spacing: 0.03em;
+}
+
+/* ==========================================================================
+   ANIMATIONS & DYNAMIC KEYFRAMES
+   ========================================================================== */
+
+@keyframes bgEntrance {
+    0% { transform: scale(1.1) rotate(0.5deg); filter: brightness(0.2); }
+    100% { transform: scale(1.02) rotate(0deg); filter: brightness(0.65) contrast(1.1) saturate(1.05); }
+}
+
+@keyframes bgCinematicZoom {
+    0% { transform: scale(1.02) translate(0px, 0px); }
+    50% { transform: scale(1.08) translate(-10px, -5px); }
+    100% { transform: scale(1.03) translate(5px, 8px); }
+}
+
+@keyframes navEntrance {
+    0% { opacity: 0; transform: translate(-50%, -25px); }
+    100% { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes hudEntrance {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sloganEntrance {
+    0% { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes topCtaEntrance {
+    0% { opacity: 0; transform: scale(0.9) translateY(-10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes footerEntrance {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes iconPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes buttonFloat {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-7px); }
+}
+
+@keyframes laserSweep {
+    0% { left: -150%; }
+    30% { left: 150%; }
+    100% { left: 150%; }
+}
+
+@keyframes blackScan {
+    0% { left: 0%; opacity: 0.1; }
+    30% { opacity: 0.8; }
+    70% { opacity: 0.8; }
+    100% { left: 100%; opacity: 0.1; }
+}
+
+@keyframes textFlicker {
+    0%, 100% { opacity: 1; }
+    45% { opacity: 1; }
+    47% { opacity: 0.65; }
+    49% { opacity: 1; }
+    94% { opacity: 1; }
+    96% { opacity: 0.4; }
+    98% { opacity: 1; }
+}
+
+/* Text glitch helper */
+.text-glitch {
+    position: relative;
+}
+
+.text-glitch::before,
+.text-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    opacity: 0.8;
+}
+
+.text-glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 var(--brand-pink);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitchAnim 5s infinite linear alternate-reverse;
+}
+
+.text-glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 var(--brand-cyan), 0 1px var(--brand-cyan);
+    clip: rect(85px, 450px, 140px, 0);
+    animation: glitchAnim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitchAnim {
+    0% { clip: rect(15px, 9999px, 66px, 0); }
+    10% { clip: rect(85px, 9999px, 5px, 0); }
+    20% { clip: rect(34px, 9999px, 78px, 0); }
+    30% { clip: rect(93px, 9999px, 12px, 0); }
+    40% { clip: rect(12px, 9999px, 45px, 0); }
+    50% { clip: rect(76px, 9999px, 98px, 0); }
+    60% { clip: rect(4px, 9999px, 23px, 0); }
+    70% { clip: rect(87px, 9999px, 11px, 0); }
+    80% { clip: rect(54px, 9999px, 89px, 0); }
+    90% { clip: rect(21px, 9999px, 32px, 0); }
+    100% { clip: rect(66px, 9999px, 56px, 0); }
+}
+
+@keyframes glitchAnim2 {
+    0% { clip: rect(65px, 9999px, 12px, 0); }
+    10% { clip: rect(12px, 9999px, 95px, 0); }
+    20% { clip: rect(84px, 9999px, 23px, 0); }
+    30% { clip: rect(43px, 9999px, 56px, 0); }
+    40% { clip: rect(98px, 9999px, 12px, 0); }
+    50% { clip: rect(23px, 9999px, 44px, 0); }
+    60% { clip: rect(78px, 9999px, 91px, 0); }
+    70% { clip: rect(11px, 9999px, 67px, 0); }
+    80% { clip: rect(90px, 9999px, 32px, 0); }
+    90% { clip: rect(3px, 9999px, 85px, 0); }
+    100% { clip: rect(54px, 9999px, 18px, 0); }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (DESKTOP OPTIMIZATIONS)
+   ========================================================================== */
+
+/* Wide Desktops & Cinematics */
+@media (min-width: 1920px) {
+    .logo-img { height: 150px; }
+    .nav-img { height: 75px; }
+    .ctr-glow-custom { padding: 14px 40px; }
+    .ctr-glow-custom .ctr-text-main { font-size: 1.05rem; }
+    .ctr-img-black { height: 78px; }
+    .slogan-title { font-size: 4.2rem; }
+    .slogan-sub { font-size: 1.15rem; }
+}
+
+/* Standard Laptops & Sub-1080p Screens */
+@media (max-width: 1440px) {
+    .logo-img { height: 110px; margin-top: 10px; }
+    .nav-img { height: 52px; }
+    .ctr-top-right-wrapper { right: 140px; }
+    .ctr-glow-custom { padding: 8px 24px; }
+    .ctr-glow-custom .ctr-text-main { font-size: 0.85rem; }
+    .ctr-img-black { height: 62px; }
+    .slogan-title { font-size: 2.6rem; }
+    .slogan-sub { font-size: 0.85rem; }
+    .hud-left, .hud-right { top: 35%; }
+}
+
+@media (max-width: 1200px) {
+    .logo-img { height: 95px; }
+    .nav-img { height: 44px; }
+    .ctr-top-right-wrapper { right: 120px; }
+    .ctr-glow-custom { padding: 7px 20px; }
+    .ctr-glow-custom .ctr-text-main { font-size: 0.8rem; }
+    .ctr-img-black { height: 54px; }
+    .slogan-title { font-size: 2.2rem; }
+    .footer-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 20px 30px;
+    }
+    .hud-left, .hud-right { display: none; } /* Hide dense HUD details on smaller viewports */
+}
+
+/* Enforced Orientation Fallback */
+@media (max-height: 650px) {
+    .main-header { height: 80px; }
+    .logo-img { height: 80px; }
+    .floating-nav-wrapper { top: 20%; }
+    .nav-img { height: 40px; }
+    .slogan-title { font-size: 1.8rem; }
+    .slogan-sub { font-size: 0.75rem; }
+    .lander-main-content { padding-bottom: 22vh; }
+    .footer-grid { padding: 15px 30px; }
+}
