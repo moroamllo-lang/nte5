@@ -3,7 +3,7 @@
    ========================================================================== */
 
 /* --- Fonts Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Outfit:wght@300;400;600;800&display=swap');
 
 /* --- Root Variables (Color Palette & Tokens) --- */
 :root {
@@ -24,7 +24,7 @@
     --border-glass: rgba(255, 255, 255, 0.1);
     --border-glow-pink: rgba(251, 86, 146, 0.35);
     
-    --font-outfit: 'Outfit', 'Inter', sans-serif;
+    --font-outfit: 'Outfit', sans-serif;
     --font-orbitron: 'Orbitron', 'Outfit', sans-serif;
     
     --transition-snappy: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -579,6 +579,35 @@ html, body {
     animation: sloganEntrance 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* Sub-headline Urgency Badge */
+.popup-sub-headline {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--brand-yellow);
+    letter-spacing: 0.15em;
+    background: rgba(255, 210, 0, 0.08);
+    border: 1px dashed rgba(255, 210, 0, 0.3);
+    padding: 6px 14px;
+    border-radius: 50px;
+    text-shadow: 0 0 10px rgba(255, 210, 0, 0.25);
+    box-shadow: 0 0 15px rgba(255, 210, 0, 0.03);
+    margin-bottom: 5px;
+    animation: badgePulse 2s infinite alternate;
+}
+
+@keyframes badgePulse {
+    0% {
+        transform: scale(0.98);
+        border-color: rgba(255, 210, 0, 0.2);
+        box-shadow: 0 0 10px rgba(255, 210, 0, 0.02);
+    }
+    100% {
+        transform: scale(1.02);
+        border-color: rgba(255, 210, 0, 0.5);
+        box-shadow: 0 0 20px rgba(255, 210, 0, 0.08);
+    }
+}
+
 /* Headline Above Popup */
 .popup-headline {
     font-size: 1.6rem;
@@ -764,7 +793,27 @@ html, body {
 /* Premium Neon Pink Clickable CTA */
 .popup-cta-wrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Cybernetic Gamer Trust Microcopy */
+.trust-microcopy {
+    font-size: 0.62rem;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    pointer-events: none;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.08);
+    transition: var(--transition-snappy);
+    margin-top: 2px;
+}
+
+.popup-cta-wrapper:hover .trust-microcopy {
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
 }
 
 .popup-cta-btn {
@@ -926,6 +975,15 @@ html, body {
 .ctr-bottom-wrapper {
     position: relative;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.ctr-bottom-wrapper:hover .trust-microcopy {
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
 }
 
 /* Bottom Black CTR Button (Restored Premium Image Style) */
