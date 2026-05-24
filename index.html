@@ -92,7 +92,7 @@
             <!-- Cinematic Trailer Ads Popup / Card -->
             <div class="cinematic-popup-wrapper" id="trailer-popup-wrapper">
                 <!-- Headline Above Popup -->
-                <h2 class="popup-headline">What If <span class="text-red-gta">GTA</span> Was Anime… and Free to Play on PC?</h2>
+                <h2 class="popup-headline">What If <span class="text-red-gta">GTA</span> Was Anime…</h2>
                 
                 <div class="popup-container-hud">
                     <!-- Corner Brackets -->
@@ -101,19 +101,7 @@
                     <span class="popup-bracket-bl"></span>
                     <span class="popup-bracket-br"></span>
                     
-                    <!-- Close button -->
-                    <button class="popup-close-btn" id="popup-close" aria-label="Close Popup">✕</button>
-                    
-                    <!-- Clickable Video Container (Responsive Media Resolution Split) -->
-                    <div class="popup-video-container" id="popup-video-link">
-                        <video autoplay loop muted playsinline class="popup-video" id="popup-vid" poster="image1.jpeg">
-                            <source src="https://embed-ssl.wistia.com/deliveries/c3faecb56d257a548756b9daf583491e7a87cb9e.mp4" type="video/mp4" media="(max-width: 768px)">
-                            <source src="https://embed-ssl.wistia.com/deliveries/7469a0b4d28297ea8a23ea2941fdc114.mp4" type="video/mp4">
-                        </video>
-                        <div class="video-overlay-click"></div>
-                    </div>
-                    
-                    <!-- Popup Controls & Details Bar -->
+                    <!-- Popup Controls & Details Bar (At the Top) -->
                     <div class="popup-controls-bar">
                         <!-- Sound Toggle -->
                         <button class="popup-sound-btn" id="popup-sound-toggle">
@@ -127,6 +115,18 @@
                                 <span class="ctr-sub-text">Windows Only</span>
                             </a>
                         </div>
+                    </div>
+                    
+                    <!-- Clickable Video Container (Below Controls) -->
+                    <div class="popup-video-container" id="popup-video-link">
+                        <!-- Close button (Placed inside video container so it sits relative to video) -->
+                        <button class="popup-close-btn" id="popup-close" aria-label="Close Popup">✕</button>
+                        
+                        <video autoplay loop muted playsinline class="popup-video" id="popup-vid" poster="image1.jpeg">
+                            <source src="https://embed-ssl.wistia.com/deliveries/c3faecb56d257a548756b9daf583491e7a87cb9e.mp4" type="video/mp4" media="(max-width: 768px)">
+                            <source src="https://embed-ssl.wistia.com/deliveries/7469a0b4d28297ea8a23ea2941fdc114.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay-click"></div>
                     </div>
                 </div>
             </div>
