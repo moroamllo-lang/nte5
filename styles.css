@@ -5,6 +5,13 @@
 /* --- Fonts Import --- */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;600&display=swap');
 
+@font-face {
+    font-family: 'Youre-Gone It';
+    src: url('Youre-Gone It.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* --- Root Variables (Color Palette & Tokens) --- */
 :root {
     --brand-pink: #FB5692;
@@ -581,22 +588,22 @@ html, body {
 
 /* Headline Above Popup */
 .popup-headline {
-    font-size: 1.6rem;
-    font-weight: 900;
-    color: #ffffff;
+    font-family: 'Youre-Gone It', sans-serif;
+    font-size: 2.2rem;
+    font-weight: normal;
+    color: #E3E3E3;
     text-align: center;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.25), 
-                 0 0 4px rgba(255, 255, 255, 0.5);
+    letter-spacing: normal;
+    text-transform: none;
+    text-shadow: 0 0 10px rgba(227, 227, 227, 0.2);
     margin: 0;
     padding: 0 15px;
     line-height: 1.3;
 }
 
-.popup-headline span {
-    color: var(--brand-pink);
-    text-shadow: 0 0 12px var(--brand-pink-glow), 0 0 3px var(--brand-pink);
+.popup-headline .text-red-gta {
+    color: #FF0000;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.6), 0 0 5px rgba(255, 0, 0, 0.8);
 }
 
 /* Popup Container with glassmorphism & animated border */
@@ -808,7 +815,7 @@ html, body {
 /* Mobile & Small Viewports Styling Overlay overrides */
 @media (max-width: 600px) {
     .popup-headline {
-        font-size: 1.15rem;
+        font-size: 1.4rem;
     }
     .popup-controls-bar {
         padding: 8px 12px;
