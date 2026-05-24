@@ -587,13 +587,6 @@ html, body {
     margin-top: -6vh; /* Move the video up a bit */
 }
 
-/* Centered Main Body CTA Button */
-.ctr-main-wrapper {
-    margin-top: 3vh;
-    pointer-events: auto;
-    z-index: 22;
-    animation: sloganEntrance 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
 
 /* Headline Above Popup */
 .popup-headline {
@@ -786,7 +779,7 @@ html, body {
 .popup-cta-btn {
     background: linear-gradient(135deg, var(--brand-pink) 0%, var(--brand-pink-dark) 100%);
     border: 1px solid rgba(251, 86, 146, 0.6);
-    border-radius: 4px;
+    border-radius: 10px;
     box-shadow: 0 0 12px var(--brand-pink-glow),
                 inset 0 0 8px rgba(255, 255, 255, 0.25);
     padding: 6px 26px;
@@ -878,7 +871,7 @@ html, body {
 }
 
 .footer-grid {
-    padding: 30px 50px 25px 50px;
+    padding: 45px 50px 40px 50px; /* Made the black part a bit larger to accommodate the glowing CTA button beautifully */
     display: grid;
     grid-template-columns: 1.5fr 1fr 1.5fr;
     align-items: center;
@@ -1227,7 +1220,7 @@ html, body {
     .slogan-title { font-size: 2.2rem; }
     .footer-grid {
         grid-template-columns: 1fr 1fr 1fr;
-        padding: 20px 30px;
+        padding: 30px 30px; /* Made larger for CTA button */
     }
     .hud-left, .hud-right { display: none; } /* Hide dense HUD details on smaller viewports */
 }
@@ -1241,5 +1234,5 @@ html, body {
     .slogan-title { font-size: 1.8rem; }
     .slogan-sub { font-size: 0.75rem; }
     .lander-main-content { padding-bottom: 22vh; }
-    .footer-grid { padding: 15px 30px; }
+    .footer-grid { padding: 25px 30px; } /* Made larger for CTA button */
 }
