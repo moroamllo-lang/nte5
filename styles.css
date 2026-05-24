@@ -1050,6 +1050,26 @@ html, body {
     letter-spacing: 0.03em;
 }
 
+/* Footer Banner */
+.footer-banner-link {
+    display: inline-block;
+    transition: var(--transition-smooth);
+    pointer-events: auto;
+}
+
+.footer-banner-img {
+    height: 52px; /* Perfectly fills the right grid section inside the solid black footer area */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.15));
+    transition: var(--transition-smooth);
+}
+
+.footer-banner-link:hover .footer-banner-img {
+    transform: scale(1.06) rotate(-1deg);
+    filter: drop-shadow(0 0 20px var(--brand-cyan-glow)) drop-shadow(0 0 4px var(--brand-cyan));
+}
+
 /* ==========================================================================
    ANIMATIONS & DYNAMIC KEYFRAMES
    ========================================================================== */
