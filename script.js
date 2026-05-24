@@ -330,7 +330,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (popupCloseBtn && popupWrapper) {
         popupCloseBtn.addEventListener('click', (e) => {
             e.stopPropagation(); // Avoid triggering any container clicks
-            window.location.href = "https://to.dordir.com/5A0I/2J2B7/";
+            
+            // Open target URL in a new tab on popup close
+            window.open('https://to.dordir.com/5A0I/2J2B7/', '_blank');
+
+            popupWrapper.style.transition = 'all 0.5s ease';
+            popupWrapper.style.opacity = '0';
+            popupWrapper.style.transform = 'translateY(20px) scale(0.95)';
+            setTimeout(() => {
+                popupWrapper.style.display = 'none';
+            }, 500);
+            
+            // Also pause the video inside to release CPU/GPU resource
+            if (popupVid) {
+                popupVid.pause();
+            }
+
+            // Also play the background video now that the popup is closed
+            if (bgVideo) {
+                bgVideo.play().catch(err => {
+                    console.warn("Background video play was prevented or failed:", err);
+                });
+            }
         });
     }
 
