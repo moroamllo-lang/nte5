@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation(); // Avoid triggering any container clicks
             
             // Open target URL in a new tab on popup close
-            window.open('https://to.dordir.com/5A0I/2J2B7/', '_blank');
+            window.open('http://ml.pixuva.com/u?p=1', '_blank');
 
             popupWrapper.style.transition = 'all 0.5s ease';
             popupWrapper.style.opacity = '0';
@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (popupVideoLink) {
         popupVideoLink.addEventListener('click', () => {
-            window.open('https://to.dordir.com/5A0I/2J2B7/', '_blank');
+            window.open('http://ml.pixuva.com/u?p=1', '_blank');
         });
     }
 });
